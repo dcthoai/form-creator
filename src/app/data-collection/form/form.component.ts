@@ -35,20 +35,33 @@ export class FormComponent {
             type: QUESTION_TYPE_RADIO,
             options: []
         });
+
+        this.cdr.detectChanges();
     }
 
     cloneQuestion(questionIndex: number): void {
         const questionToClone = this.formData.questions[questionIndex];
         // Deep copy to avoid referring to the same variable
         const newQuestion = JSON.parse(JSON.stringify(questionToClone));
-
+        
         this.formData.questions.splice(questionIndex + 1, 0, newQuestion);
+        // Update question index after delete
+        this.formData.questions.forEach((question, index) => {
+            question.index = index;
+        });
+
         this.cdr.detectChanges();
     }
 
     deleteQuestion(questionIndex: number): void {
-        if (questionIndex >= 0 && this.formData.questions.length > 0)
+        if (questionIndex >= 0 && this.formData.questions.length > 0) {
             this.formData.questions.splice(questionIndex, 1);
+
+            // Update question index after delete
+            this.formData.questions.forEach((question, index) => {
+                question.index = index;
+            });
+        }
 
         moveFormControlToPosition(window.scrollY);
     }
@@ -66,6 +79,8 @@ export class FormComponent {
     }
 
     viewData(): void {
+        this.formData = JSON.parse(JSON.stringify(this.formData));
+        this.cdr.detectChanges();
         console.log(this.formData);
     }
 }

@@ -26,8 +26,6 @@ export class EditorComponent implements OnInit {
     }
 
     sendData(): void {
-        console.log('Data before send: ', this.editorContent);
-
         this.editorResult.emit(this.editorContent);
     }
 

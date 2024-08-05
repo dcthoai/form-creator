@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { EDITOR_CONFIG_OPTION, EDITOR_CLASS_OPTION, OptionDetails, QUESTION_TYPE_SORTTEXT, QUESTION_TYPE_LONGTEXT, QUESTION_TYPE_DATE, QUESTION_TYPE_TIME } from '../../form.constants';
 import { QUESTION_TYPE_CHECKBOX, QUESTION_TYPE_DROPDOWN, QUESTION_TYPE_RADIO } from '../../form.constants';
 
@@ -15,6 +15,8 @@ export class OptionComponent implements OnInit {
     @Output() optionDeleteIndex = new EventEmitter<number>();
     public questionTemplateType: TemplateRef<any>;
 
+    constructor(private cdr: ChangeDetectorRef) {}
+
     // Custom config for text editor
     public EDITOR_CONFIG_OPTION = EDITOR_CONFIG_OPTION;
     public EDITOR_CLASS_OPTION = EDITOR_CLASS_OPTION;
@@ -29,6 +31,7 @@ export class OptionComponent implements OnInit {
 
     ngOnInit() {
         this.setTemplateByQuestionType();
+        this.cdr.detectChanges();   // in this case to avoid ExpressionChangedAfterItHasBeenCheckedError
     }
 
     setTemplateByQuestionType(): void {
