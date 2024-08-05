@@ -1,0 +1,56 @@
+
+.question__option {
+    border-bottom: 1px solid transparent;
+    cursor: text;
+    position: relative;
+}
+
+.question__option::after {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 2;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #673ab7;
+    border-radius: 0.5rem;
+}
+
+.question__option.active::after {
+    width: 100%;
+    transition: all ease 0.3s;
+}
+
+.question__option button {
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: transparent;
+    padding: 0.25rem;
+    transition: all ease 0.3s;
+    margin-top: 0.75rem;
+}
+
+.question__option button:hover {
+    background-color: #f4f4f4;
+}
+
+.question__option svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.question__option .icon {
+    padding-top: 0.75rem;
+}
+
+.question__option button.delete-option {
+    outline: none;
+    border: none;
+}
+
+.question__option .typeDateTime {
+    border-bottom: 1px dotted #00000061;
+}

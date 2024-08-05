@@ -1,0 +1,80 @@
+
+<div class="question__option d-flex justify-content-between align-items-center">
+    <ng-container *ngTemplateOutlet="questionTemplateType"></ng-container>
+</div>
+
+<ng-template #optionEditor>
+    <app-editor
+        class="{{EDITOR_CLASS_OPTION}}"
+        [editorId]="optionDetails.id"
+        [editorContent]="optionDetails.content"
+        [editorConfig]="EDITOR_CONFIG_OPTION"
+        (editorResult)="handleEditorResult($event)">
+    </app-editor>
+
+    <button type="button" class="delete-option" (click)="deleteQuestionOptionRequest()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="#80868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+</ng-template>
+
+<ng-template #typeQuestionRadio>
+    <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+            <g id="Interface / Radio_Unchecked"><path id="Vector" d="M12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4Z" stroke="#80868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </svg>
+    </div>
+
+    <ng-container *ngTemplateOutlet="optionEditor"></ng-container>
+</ng-template>
+
+<ng-template #typeQuestionCheckbox>
+    <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+            <g id="Interface / Checkbox_Unchecked"><path id="Vector" d="M4 7.2002V16.8002C4 17.9203 4 18.4801 4.21799 18.9079C4.40973 19.2842 4.71547 19.5905 5.0918 19.7822C5.5192 20 6.07899 20 7.19691 20H16.8031C17.921 20 18.48 20 18.9074 19.7822C19.2837 19.5905 19.5905 19.2842 19.7822 18.9079C20 18.4805 20 17.9215 20 16.8036V7.19691C20 6.07899 20 5.5192 19.7822 5.0918C19.5905 4.71547 19.2837 4.40973 18.9074 4.21799C18.4796 4 17.9203 4 16.8002 4H7.2002C6.08009 4 5.51962 4 5.0918 4.21799C4.71547 4.40973 4.40973 4.71547 4.21799 5.0918C4 5.51962 4 6.08009 4 7.2002Z" stroke="#80868b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>
+        </svg>
+    </div>
+
+    <ng-container *ngTemplateOutlet="optionEditor"></ng-container>
+</ng-template>
+
+<ng-template #typeQuestionDropdown>
+    <div class="icon">{{ optionDetails.index }}.</div>
+
+    <ng-container *ngTemplateOutlet="optionEditor"></ng-container>
+</ng-template>
+
+<ng-template #typeQuestionSortText>
+    <div class="w-75 mt-3 pb-1 font-weight-normal text-secondary"
+        style="font-size: 14px; border-bottom: 1px dotted rgba(0,0,0,.38)">
+        Câu trả lời ngắn
+    </div>
+</ng-template>
+
+<ng-template #typeQuestionLongText>
+    <div class="w-75 mt-3 pb-1 font-weight-normal text-secondary"
+        style="font-size: 14px; border-bottom: 1px dotted rgba(0,0,0,.38)">
+        Đoạn văn trả lời
+    </div>
+</ng-template>
+
+<ng-template #typeQuestionDate>
+    <div class="typeDateTime w-25 mt-3 pb-1 font-weight-normal text-secondary d-flex justify-content-between"
+        style="font-size: 15px;">
+        <span>Tháng, ngày, năm</span>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" fill="none">
+            <path d="M3 9H21M7 3V5M17 3V5M6 12H10V16H6V12ZM6.2 21H17.8C18.9201 21 19.4802 21 19.908 20.782C20.2843 20.5903 20.5903 20.2843 20.782 19.908C21 19.4802 21 18.9201 21 17.8V8.2C21 7.07989 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V17.8C3 18.9201 3 19.4802 3.21799 19.908C3.40973 20.2843 3.71569 20.5903 4.09202 20.782C4.51984 21 5.07989 21 6.2 21Z" stroke="#00000061" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+</ng-template>
+
+<ng-template #typeQuestionTime>
+    <div class="typeDateTime w-25 mt-3 pb-1 font-weight-normal text-secondary d-flex justify-content-between"
+        style="font-size: 15px;">
+        <span>Giờ</span>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" viewBox="0 0 24 24" fill="none">
+            <path d="M12 7V12L14.5 13.5M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#00000061" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
+</ng-template>

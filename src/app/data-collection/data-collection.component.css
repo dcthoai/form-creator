@@ -1,0 +1,60 @@
+
+.data-collection {
+    background-color: #f0ebf8;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.data-collection__nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.data-collection__body {
+    margin-top: 5rem;
+}
+
+.card {
+    width: 100%;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: unset;
+}
+
+a.active {
+    border-bottom: 3px solid #4c2b87;
+}
+
+.nav-link {
+    color: #3c4043;
+    font-weight: 500;
+}
+
+.nav-item {
+    transition: all ease 0.3s;
+}
+
+.nav-item:hover {
+    background-color: #f0ebf8;
+}
+
+.nav-link:hover {
+    color: #4c2b87;
+}
+
+.nav-pills .nav-link {
+    border-radius: 0;
+}
+
+.nav-pills .nav-link.active {
+    color: #4c2b87;
+    background-color: white;
+    font-weight: 600;
+}
+
+.tab-content {
+    padding-bottom: 1.3rem;
+}

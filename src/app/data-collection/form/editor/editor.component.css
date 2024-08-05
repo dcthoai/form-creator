@@ -1,0 +1,146 @@
+.editor {
+    overflow: hidden;
+    transition: all ease 0.5s;
+}
+
+.editor .angular-editor-textarea {
+    outline: none ;
+    font-size: 18px;
+    width: calc(100% + 1rem) ;
+    margin: 0;
+    padding: 0 0.875rem 2px 0 !important;
+    border: none !important;
+}
+
+.editor .angular-editor-textarea p {
+    max-width: 100%;
+}
+
+.editor .angular-editor-placeholder {
+    padding: 0 !important;
+}
+
+.editor .angular-editor-wrapper {
+    position: relative;
+}
+
+.editor .angular-editor-wrapper::after {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 2;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: #673ab7;
+    border-radius: 0.5rem;
+}
+
+.editor.active .angular-editor-wrapper::after {
+    width: 100%;
+    transition: all ease 0.5s;
+}
+
+.editor.active .angular-editor-toolbar {
+    display: block;
+}
+
+.editor .angular-editor-toolbar {
+    margin-top: 0.4rem;
+    padding: 0 !important;
+    display: none;
+    height: 0;
+    border: none !important;
+    background-color: transparent !important;
+    transition: all ease 0.5s;
+}
+
+.editor .angular-editor-toolbar .angular-editor-button {
+    color: #494949 !important;
+    margin-right: 4px;
+    border: none !important;
+    border-radius: 4px;
+}
+
+.angular-editor-toolbar .angular-editor-toolbar-set:first-child,
+.angular-editor-toolbar .angular-editor-toolbar-set:nth-child(3),
+.angular-editor-toolbar .angular-editor-toolbar-set:nth-child(4),
+.angular-editor-toolbar .angular-editor-toolbar-set:nth-child(6),
+.angular-editor-toolbar .angular-editor-toolbar-set:nth-child(7),
+.angular-editor-toolbar .angular-editor-toolbar-set:nth-child(8),
+.angular-editor-toolbar .angular-editor-toolbar-set:nth-child(9),
+.angular-editor-toolbar .angular-editor-toolbar-set:last-child,
+.angular-editor-toolbar .angular-editor-toolbar-set button[title="Strikethrough"],
+.angular-editor-toolbar .angular-editor-toolbar-set button[title="Subscript"],
+.angular-editor-toolbar .angular-editor-toolbar-set button[title="Superscript"],
+.angular-editor-toolbar .angular-editor-toolbar-set button[title="Unlink"],
+.angular-editor-toolbar .angular-editor-toolbar-set button[title="Insert Video"],
+.angular-editor-toolbar .angular-editor-toolbar-set button[title="Insert Image"],
+.angular-editor-toolbar .angular-editor-toolbar-set button[title="Unordered List"],
+.angular-editor-toolbar .angular-editor-toolbar-set button[title="Ordered List"],
+.angular-editor-toolbar .angular-editor-toolbar-set button[title="Horizontal Line"] {
+    display: none !important;
+}
+
+.angular-editor-toolbar .angular-editor-toolbar-set {
+    border: none !important;
+}
+
+.angular-editor-toolbar .angular-editor-button.active {
+    color: #000 !important;
+    background-color: #c0c0c0 !important;
+}
+
+/* Custom css for other type editor */
+
+.editor-description .angular-editor-toolbar-set button[title="Ordered List"],
+.editor-description .angular-editor-toolbar-set button[title="Unordered List"] {
+    display: block !important;
+}
+
+.editor-option {
+    flex: 1;
+    padding: 0 1rem;
+}
+
+.editor-option .angular-editor-textarea {
+    padding: 1rem 0 0.25rem !important;
+    border-bottom: 1px solid transparent !important;
+}
+
+.editor-option .angular-editor-placeholder {
+    line-height: 3.75rem;
+    padding-left: 0.25rem !important;
+}
+
+.editor-option .angular-editor-toolbar {
+    display: none !important;
+}
+
+/* Editor active */
+.editor.active {
+    padding-bottom: 2rem !important;
+}
+
+.form__title.active .editor-title .angular-editor-textarea,
+.form__title.active .editor-description .angular-editor-textarea {
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+.form__content .question.active .editor-option .angular-editor-textarea:hover {
+    border-bottom-color: #dee2e6 !important;
+}
+
+.editor-option .editor.active {
+    padding-bottom: 0 !important;
+}
+
+.editor.active {}
+
+.editor.active {}
+
+.editor.active {}
+
+.editor.active {}

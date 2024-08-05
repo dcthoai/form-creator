@@ -1,0 +1,9 @@
+
+<div class="editor" [ngClass]="customClass" (click)="openEditor($event)">
+    <angular-editor
+        [id]="editorId"
+        [(ngModel)]="editorContent"
+        (ngModelChange)="sendData()"
+        [config]="editorConfig">
+    </angular-editor>
+</div>
