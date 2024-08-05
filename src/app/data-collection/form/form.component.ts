@@ -1,8 +1,8 @@
-import { Component, ElementRef } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { EDITOR_CONFIG_TITLE, EDITOR_CONFIG_DESCRIPTION, FormData } from './form.constants';
-import { QUESTION_TYPE_CHECKBOX, QUESTION_TYPE_RADIO } from './form.constants';
+import { QUESTION_TYPE_RADIO } from './form.constants';
 import { EDITOR_CLASS_TITLE, EDITOR_CLASS_DESCRIPTION } from './form.constants';
-import { closeAllQuestionEditor, closeFormTitleEditor, moveFormControlToPosition } from './form.utils';
+import { moveFormControlToPosition } from './form.utils';
 
 @Component({
     selector: 'app-form',
@@ -16,7 +16,7 @@ export class FormComponent {
     EDITOR_CLASS_TITLE = EDITOR_CLASS_TITLE;
     EDITOR_CLASS_DESCRIPTION = EDITOR_CLASS_DESCRIPTION;
 
-    constructor(private elementRef: ElementRef) {}
+    constructor(private cdr: ChangeDetectorRef) {}
 
     public formData: FormData = {
         id: null,
@@ -38,13 +38,34 @@ export class FormComponent {
     }
 
     cloneQuestion(questionIndex: number): void {
+        const questionToClone = this.formData.questions[questionIndex];
+        // Deep copy to avoid referring to the same variable
+        const newQuestion = JSON.parse(JSON.stringify(questionToClone));
 
+        this.formData.questions.splice(questionIndex + 1, 0, newQuestion);
+        this.cdr.detectChanges();
     }
 
     deleteQuestion(questionIndex: number): void {
         if (questionIndex >= 0 && this.formData.questions.length > 0)
             this.formData.questions.splice(questionIndex, 1);
-        
+
         moveFormControlToPosition(window.scrollY);
+    }
+
+    updateQuestionData(newQuestionContent: any): void {
+        this.formData.questions[newQuestionContent.index] = newQuestionContent.content;
+    }
+
+    updateFormTitle(newTitle: string): void {
+        this.formData.title = newTitle;
+    }
+
+    updateFormDescription(newDescription: string): void {
+        this.formData.description = newDescription;
+    }
+
+    viewData(): void {
+        console.log(this.formData);
     }
 }

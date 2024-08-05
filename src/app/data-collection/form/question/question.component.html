@@ -5,7 +5,8 @@
                 class="{{EDITOR_CLASS_QUESTION}}"
                 [editorId]="questionDetails.id"
                 [editorContent]="questionDetails.name"
-                [editorConfig]="EDITOR_CONFIG_QUESTION">
+                [editorConfig]="EDITOR_CONFIG_QUESTION"
+                (editorResult)="updateQuestionName($event)">
             </app-editor>
         </div>
 

@@ -11,7 +11,7 @@ export class OptionComponent implements OnInit {
     @Input() optionIndex: number;
     @Input() optionType: string;
     @Input() optionDetails: OptionDetails;
-    @Output() optionResult = new EventEmitter<OptionDetails>();
+    @Output() optionResult = new EventEmitter<any>();
     @Output() optionDeleteIndex = new EventEmitter<number>();
     public questionTemplateType: TemplateRef<any>;
 
@@ -67,7 +67,7 @@ export class OptionComponent implements OnInit {
     // Send data to parent component
     handleEditorResult(data: string): void {
         this.optionDetails.content = data;
-        this.optionResult.emit(this.optionDetails);
+        this.optionResult.emit({index: this.optionIndex, option: this.optionDetails});
     }
 
     deleteQuestionOptionRequest(): void {

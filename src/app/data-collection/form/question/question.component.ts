@@ -15,6 +15,7 @@ export class QuestionComponent implements OnInit {
     @Input() questionIndex: number;
     @Output() questionCloneIndex = new EventEmitter<number>();
     @Output() questionDeleteIndex = new EventEmitter<number>();
+    @Output() questionUpdateData = new EventEmitter<any>();
 
     // Const custom config for text editor
     EDITOR_CONFIG_QUESTION: AngularEditorConfig = EDITOR_CONFIG_QUESTION;
@@ -31,24 +32,46 @@ export class QuestionComponent implements OnInit {
 
     ngOnInit(): void {
         // Add a default answer when the question is initialized
-        this.questionDetails.options.push({
-            id: '',
-            content: 'Tùy chọn',
-            index: 1
-        });
+        if (this.questionDetails.options.length === 0) {
+            this.questionDetails.options.push({
+                id: '',
+                content: 'Tùy chọn',
+                index: 1
+            });
+
+            this.sendData();
+        }
+    }
+
+    sendData(): void {
+        this.questionUpdateData.emit({content: this.questionDetails, index: this.questionIndex});
+    }
+
+    updateQuestionName(newQuestionName: string) {
+        this.questionDetails.name = newQuestionName;
+        this.sendData();
+    }
+
+    updateQuestionOptionContent(newQuestionOption: any) {
+        this.questionDetails.options[newQuestionOption.index] = newQuestionOption.option;
+        this.sendData();
     }
 
     setQuestionType(questionType: QuestionType) {
         this.questionDetails.type = questionType;
+        // Actions are just a way to make angular detect data changes and update the view
+        this.questionDetails = JSON.parse(JSON.stringify(this.questionDetails));
 
         if (!this.isQuestionOptions()) {
             // Convert the question to a single answer format
             this.questionDetails.options = [{
                 id: '',
-                content: '',
+                content: 'Tùy chọn',
                 index: null
             }]
         }
+
+        this.sendData();
     }
 
     isQuestionOptions(): boolean {
@@ -63,12 +86,16 @@ export class QuestionComponent implements OnInit {
             content: 'Tùy chọn',
             index: this.questionDetails.options.length + 1
         });
+
+        this.sendData();
     }
 
     deleteQuestionOption(questionOptionIndex: number): void {
         // Only delete when there are more than 1 options
-        if (questionOptionIndex >= 0 && this.questionDetails.options.length > 1)
+        if (questionOptionIndex >= 0 && this.questionDetails.options.length > 1) {
             this.questionDetails.options.splice(questionOptionIndex, 1);
+            this.sendData();
+        }
     }
 
     cloneQuestionRequest(): void {
@@ -81,5 +108,6 @@ export class QuestionComponent implements OnInit {
 
     toggleQuestionRequired(): void {
         this.questionDetails.isRequired = !this.questionDetails.isRequired;
+        this.sendData();
     }
 }

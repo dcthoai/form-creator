@@ -1,22 +1,24 @@
 <div class="form">
     <div class="form__title p-4 bg-white">
         <div class="heading">
-            <title class="">Mẫu không có tiêu đề</title>
+            <!-- <title class="">Mẫu không có tiêu đề</title> -->
             <app-editor
                 class="{{EDITOR_CLASS_TITLE}}"
                 [editorId]="'editorHeading'"
                 [editorContent]="formData.title"
-                [editorConfig]="EDITOR_CONFIG_TITLE">
+                [editorConfig]="EDITOR_CONFIG_TITLE"
+                (editorResult)="updateFormTitle($event)">
             </app-editor>
         </div>
 
         <div class="description mt-2">
-            <title class="">Mô tả biểu mẫu</title>
+            <!-- <title class="">Mô tả biểu mẫu</title> -->
             <app-editor
                 class="{{EDITOR_CLASS_DESCRIPTION}}"
                 [editorId]="'editorDescription'"
                 [editorContent]="formData.description"
-                [editorConfig]="EDITOR_CONFIG_DESCRIPTION">
+                [editorConfig]="EDITOR_CONFIG_DESCRIPTION"
+                (editorResult)="updateFormDescription($event)">
             </app-editor>
         </div>
     </div>
@@ -27,7 +29,8 @@
                 [questionDetails]="question"
                 [questionIndex]="i"
                 (questionCloneIndex)="cloneQuestion($event)"
-                (questionDeleteIndex)="deleteQuestion($event)">
+                (questionDeleteIndex)="deleteQuestion($event)"
+                (questionUpdateData)="updateQuestionData($event)">
             </app-question>
         </div>
     </div>
@@ -40,7 +43,7 @@
             <span class="des">Thêm câu hỏi</span>
         </button>
 
-        <button class="border-0 shadow-none mt-3" type="button">
+        <button class="border-0 shadow-none mt-3" type="button" (click)="viewData()">
             <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="800px" height="800px" viewBox="0 0 52 52" enable-background="new 0 0 52 52" xml:space="preserve">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M47.6,29.2h-8c-1.3,0-2.4-1.1-2.4-2.4v-1.6  c0-1.3,1.1-2.4,2.4-2.4h8c1.3,0,2.4,1.1,2.4,2.4v1.6C50,28.1,48.9,29.2,47.6,29.2"/>
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M30,29.2h-8c-1.3,0-2.4-1.1-2.4-2.4v-1.6  c0-1.3,1.1-2.4,2.4-2.4h8c1.3,0,2.4,1.1,2.4,2.4v1.6C32.4,28.1,31.3,29.2,30,29.2"/>
